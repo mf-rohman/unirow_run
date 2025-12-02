@@ -43,7 +43,7 @@ class ParticipantResource extends Resource
                     ->directory('payments')
                     ->columnSpanFull(),
 
-                Tables\Columns\ToggleColumn::make('is_verified')
+                Forms\Components\Toggle::make('is_verified')
                     ->label('Lunas?')
                     ->onColor('success')
                     ->offColor('danger')
