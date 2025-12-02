@@ -74,11 +74,15 @@ class ParticipantResource extends Resource
                 Tables\Columns\TextColumn::make('usia')->suffix(' Thn'),
                 Tables\Columns\TextColumn::make('phone')->label('WA'),
                 Tables\Columns\TextColumn::make('jersey_size')->label('Size'),
-                // Tables\Columns\ImageColumn::make('payment_proof')->label('Bukti')
-                //     ->disk('public')
-                //     ->size(50)
-                //     ->visibility('public'),
-                // Tables\Columns\ToggleColumn::make('is_verified')->label('Verif'),
+                Tables\Columns\IconColumn::make('is_verified')
+                    ->label('Status Bayar')
+                    ->boolean() 
+                    ->trueIcon('heroicon-s-check-circle') 
+                    ->falseIcon('heroicon-o-x-circle')    
+                    ->trueColor('success') 
+                    ->falseColor('danger') 
+                    ->alignCenter(),
+
                 Tables\Columns\TextColumn::make('created_at')->dateTime()->label('Tgl Daftar'),
             ])
             ->filters([
@@ -109,10 +113,10 @@ class ParticipantResource extends Resource
                         foreach ($records as $record) {
                             // Hanya proses yang belum diverifikasi atau belum punya BIB
                             if (!$record->is_verified || empty($record->bib_number)) {
-                                
+
                                 // Generate BIB
                                 $bib = 'RUN-' . str_pad($record->id, 4, '0', STR_PAD_LEFT);
-                                
+
                                 $record->update([
                                     'is_verified' => true,
                                     'bib_number' => $bib
