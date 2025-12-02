@@ -226,7 +226,11 @@
     </div>
 
     <div class="mb-6 text-center">
-        <h1 class="text-3xl font-bold text-white tracking-wider">UNIROW<span class="text-blue-400">RUN</span></h1>
+        <div class="mb-2 text-center flex justify-center">
+            <img src="{{ asset('images/logo.png') }}" 
+                 alt="Logo Unirow Run" 
+                 class="h-24 md:h-32 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] hover:scale-105      transition-transform duration-300">
+        </div>
         <p class="text-blue-200 text-sm">Dies Natalis 2025 Registration</p>
     </div>
 
@@ -235,7 +239,7 @@
     </div>
 
     <div class="mt-8 text-center text-slate-500 text-xs">
-        &copy; 2025 Panitia Dies Natalis Unirow Tuban
+        &copy; 2025 Sipd Unirow
     </div>
 
     @filamentScripts
