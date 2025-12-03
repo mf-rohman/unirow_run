@@ -205,9 +205,9 @@
             </div>
         </div>
 
-        <div class="text-center text-gray-500 text-xs md:text-sm border-t border-white/5 pt-8">
+        <!-- <div class="text-center text-gray-500 text-xs md:text-sm border-t border-white/5 pt-8">
             &copy; 2025 Sipd Unirow
-        </div>
+        </div> -->
 
     </div>
 
