@@ -36,6 +36,17 @@
         ::view-transition-new(root) {
             animation-duration: 0.5s; /* Setengah detik */
         }
+
+        /* Pastikan canvas partikel ada di belakang */
+        #tsparticles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -5; /* Paling belakang */
+            top: 0;
+            left: 0;
+            pointer-events: none; /* Agar tidak menghalangi klik pada konten */
+        }
         
         input, select, textarea, .fi-input, .fi-select-input {
             color: #000000 !important;
@@ -173,7 +184,11 @@
 </head>
 <body class="antialiased min-h-screen flex flex-col items-center justify-center p-4">
     <div class="fixed inset-0 -z-10 bg-[#0f172a] overflow-hidden">
+        <!-- <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div> -->
+
         <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+         <div class="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-[150px] opacity-20 animate-pulse"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full filter blur-[150px] opacity-20 animate-pulse"></div>
         
         <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
 
@@ -222,7 +237,77 @@
     @filamentScripts
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.12.0/tsparticles.slim.bundle.min.js"></script>
     <script>
+
+        (async () => {
+            await tsParticles.load("tsparticles", {
+                fullScreen: { enable: false }, // Kita atur posisi manual via CSS
+                background: {
+                    color: { value: "transparent" }, // Background transparan agar warna dasar terlihat
+                },
+                fpsLimit: 120, // Performa tinggi
+                interactivity: {
+                    events: {
+                        // Saat mouse bergerak di atasnya (Hover)
+                        onHover: {
+                            enable: true,
+                            mode: "grab" // Mode "Grab": Menarik garis ke kursor
+                        },
+                        resize: true,
+                    },
+                    modes: {
+                        grab: {
+                            distance: 200, // Jarak kursor mulai menarik partikel
+                            links: {
+                                opacity: 0.8, // Garis koneksi ke mouse lebih terang
+                                color: "#60a5fa" // Warna garis biru terang
+                            }
+                        },
+                    },
+                },
+                particles: {
+                    color: {
+                        value: "#3b82f6" // Warna titik partikel (Biru)
+                    },
+                    links: {
+                        color: "#3b82f6", // Warna garis antar partikel
+                        distance: 150, // Jarak maksimal untuk terhubung
+                        enable: true,
+                        opacity: 0.3, // Kecerahan garis (agak samar)
+                        width: 1,
+                    },
+                    move: {
+                        direction: "none",
+                        enable: true,
+                        outModes: {
+                            default: "bounce" // Memantul jika kena pinggir layar
+                        },
+                        random: false,
+                        speed: 1, // Kecepatan gerak partikel (santai)
+                        straight: false,
+                    },
+                    number: {
+                        density: {
+                            enable: true,
+                            area: 800,
+                        },
+                        value: 80, // Jumlah total partikel (jangan terlalu banyak biar ga berat)
+                    },
+                    opacity: {
+                        value: 0.5, // Kecerahan titik partikel
+                    },
+                    shape: {
+                        type: "circle", // Bentuk titik bulat
+                    },
+                    size: {
+                        value: { min: 1, max: 3 }, // Ukuran partikel bervariasi
+                    },
+                },
+                detectRetina: true,
+            });
+        })();
+
        // Fungsi Init AOS
        function initAOS() {
             AOS.init({
