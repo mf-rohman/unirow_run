@@ -94,7 +94,7 @@
                             <div class="w-3 h-3 md:w-4 md:h-4 rounded-full bg-yellow-400 border-2 border-gray-900 shadow-[0_0_10px_rgba(250,204,21,0.5)]"></div>
                         </div>
                         <div class="flex-1 bg-white/5 p-2 rounded-lg border border-white/5 min-w-0">
-                            <div class="text-yellow-400 text-[10px] md:text-xs font-bold uppercase tracking-wide">Landmark</div>
+                            <div class="text-yellow-400 text-[10px] md:text-xs font-bold uppercase tracking-wide">High School</div>
                             <div class="text-white text-sm md:text-base truncate">SMAN 1 Tuban</div>
                         </div>
                     </div>
