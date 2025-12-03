@@ -49,7 +49,7 @@ class RegistrationForm extends Component implements HasForms
                                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                         <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
                                             <div class="text-2xl mb-2">📅</div>
-                                            <div class="font-bold text-blue-900">Jum &apos;at, 02 Jan 2026</div>
+                                            <div class="font-bold text-blue-900">Minggu, 18 Jan 2026</div>
                                             <div class="text-xs text-blue-600">06:00 WIB - Selesai</div>
                                         </div>
                                         <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
@@ -66,7 +66,7 @@ class RegistrationForm extends Component implements HasForms
 
                                     <div class="bg-white border-l-4 border-blue-500 text-left p-4 shadow-sm rounded-r-lg">
                                         <p class="text-gray-600 italic">
-                                            "Ajang lari paling bergengsi di Tuban kembali hadir! Siapkan fisikmu untuk rute 5K yang menyenangkan atau tantang dirimu di rute 10K. Dapatkan Jersey Eksklusif, Medali Finisher, dan kesempatan memenangkan Doorprize menarik."
+                                            "Ajang lari paling bergengsi di Tuban kembali hadir! Siapkan fisikmu untuk rute 5K yang menyenangkan. Dapatkan Jersey Eksklusif, Medali Finisher, dan kesempatan memenangkan Doorprize menarik."
                                         </p>
                                     </div>
 
