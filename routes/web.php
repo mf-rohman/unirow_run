@@ -20,7 +20,12 @@ use Illuminate\Http\Request;
 //     return view('welcome');
 // });
 
-Route::get('/', RegistrationForm::class);
+Route::get('/', function () {
+    return view('landing'); // Kita akan buat file ini setelah ini
+})->name('home');
+
+// 2. Halaman Form Pendaftaran (Form yang kemarin)
+Route::get('/register', RegistrationForm::class)->name('register');
 
 Route::get('/verify-email/{id}', function (Request $request, $id) {
     if (! $request->hasValidSignature()) {

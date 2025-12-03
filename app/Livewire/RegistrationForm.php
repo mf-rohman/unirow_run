@@ -42,14 +42,14 @@ class RegistrationForm extends Component implements HasForms
                             ->content(new HtmlString('
                                 <div class="text-center space-y-6">
                                     <div>
-                                        <h2 class="text-3xl font-extrabold text-blue-900">Fun Run Dies Natalis Unirow 2025</h2>
+                                        <h2 class="text-3xl font-extrabold text-blue-900">Unirow Run Dies Natalis 2025</h2>
                                         <p class="text-gray-500 mt-2 text-lg">Rayakan semangat kebersamaan dengan berlari bersama!</p>
                                     </div>
 
                                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                         <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
                                             <div class="text-2xl mb-2">📅</div>
-                                            <div class="font-bold text-blue-900">Minggu, 20 Agt 2025</div>
+                                            <div class="font-bold text-blue-900">Jum &apos;at, 02 Jan 2026</div>
                                             <div class="text-xs text-blue-600">06:00 WIB - Selesai</div>
                                         </div>
                                         <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
@@ -59,8 +59,8 @@ class RegistrationForm extends Component implements HasForms
                                         </div>
                                         <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
                                             <div class="text-2xl mb-2">🎁</div>
-                                            <div class="font-bold text-blue-900">Total Hadiah</div>
-                                            <div class="text-xs text-blue-600">Puluhan Juta Rupiah</div>
+                                            <div class="font-bold text-blue-900">Hadiah</div>
+                                            <div class="text-xs text-blue-600">Banyak Hadiah Menarik</div>
                                         </div>
                                     </div>
 
@@ -79,7 +79,6 @@ class RegistrationForm extends Component implements HasForms
                             ')),
                     ]),
 
-                // --- STEP 2: GENDER (Tetap) ---
                 Wizard\Step::make('Gender')
                     ->label('Gender')
                     ->icon('heroicon-o-user')

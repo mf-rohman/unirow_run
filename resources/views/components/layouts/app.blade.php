@@ -1,44 +1,58 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="light"> <head>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="light"> 
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{asset('images/logo.png')}}">
     <title>Fun Run Dies Natalis Unirow 2025</title>
+    
     
     @filamentStyles
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
         
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #172554; /* Deep Blue Background */
+            background-color: #172554; 
             color: #1e293b;
+            overflow-x: hidden;
         }
 
-        /* --- PERBAIKAN UTAMA: MEMAKSA WARNA HITAM PADA INPUT --- */
+        #nprogress .bar {
+            background: #3b82f6 !important; /* Warna Biru */
+            height: 4px !important;
+            box-shadow: 0 0 10px #3b82f6, 0 0 5px #3b82f6;
+        }
+        #nprogress .peg {
+            box-shadow: 0 0 10px #3b82f6, 0 0 5px #3b82f6;
+        }
+
+        /* 3. SETTING DURASI TRANSISI (Lebih Lambat & Elegan) */
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+            animation-duration: 0.5s; /* Setengah detik */
+        }
         
-        /* 1. Target Input, Select, Textarea */
         input, select, textarea, .fi-input, .fi-select-input {
-            color: #000000 !important; /* Teks Hitam Pekat */
-            background-color: #f3f4f6 !important; /* Background Abu Muda */
-            border: 1px solid #d1d5db !important; /* Border Abu */
-            -webkit-text-fill-color: #000000 !important; /* Fix untuk Safari/Chrome */
+            color: #000000 !important;
+            background-color: #f3f4f6 !important; 
+            border: 1px solid #d1d5db !important; 
+            -webkit-text-fill-color: #000000 !important;
         }
 
-        /* 2. Target Label (Judul Input) */
         label, .fi-fo-field-wrp-label, span.fi-fo-field-wrp-label {
-            color: #1f2937 !important; /* Abu Gelap */
+            color: #1f2937 !important;
         }
 
-        /* 3. Target Placeholder (Teks bayangan 'Masukkan nama...') */
         ::placeholder {
-            color: #9ca3af !important; /* Abu-abu medium */
+            color: #9ca3af !important; 
             opacity: 1 !important;
         }
 
-        /* 4. Fix dropdown icon agar terlihat */
         select {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") !important;
             background-position: right 0.5rem center !important;
@@ -46,131 +60,95 @@
             background-size: 1.5em 1.5em !important;
         }
 
-        /* 5. Styling Wizard Step (Supaya teks step di atas tidak putih hilang) */
         .fi-fo-wizard-header-step-label {
-            color: #e2e8f0 !important; /* Putih agak abu utk teks header */
+            color: #e2e8f0 !important; 
         }
         .fi-fo-wizard-header-step-icon {
             border-color: #3b82f6 !important;
             color: #3b82f6 !important;
         }
 
-        /* Style tambahan untuk tombol submit */
         button[type="submit"] {
-            background-color: #22c55e !important; /* Hijau */
+            background-color: #22c55e !important;
             color: white !important;
         }
 
-        /* --- CUSTOM WIZARD BUTTONS --- */
-
-        /* 1. Styling area tombol di bawah */
         .fi-fo-wizard-footer-actions {
-            gap: 1rem; /* Jarak antar tombol */
+            gap: 1rem;
         }
 
-        /* 2. Tombol NEXT (Lanjut) - Kita ubah jadi Biru Besar */
         .fi-btn-color-primary {
-            background-color: #3b82f6 !important; /* Biru */
+            background-color: #3b82f6 !important; 
             color: white !important;
-            border-radius: 9999px !important; /* Bulat */
-            padding: 0.75rem 2rem !important; /* Besar */
+            border-radius: 9999px !important; 
+            padding: 0.75rem 2rem !important; 
             font-weight: bold !important;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        /* 3. Tombol PREVIOUS (Kembali) - Kita ubah jadi Abu Terang Besar */
         .fi-btn-color-gray {
-            background-color: #e5e7eb !important; /* Abu terang */
-            color: #1f2937 !important; /* Teks Hitam */
+            background-color: #e5e7eb !important; 
+            color: #1f2937 !important; 
             border-radius: 9999px !important;
             padding: 0.75rem 2rem !important;
             font-weight: bold !important;
             border: none !important;
         }
 
-        /* Efek Hover */
         .fi-btn-color-primary:hover { transform: scale(1.05); transition: 0.2s; }
         .fi-btn-color-gray:hover { background-color: #d1d5db !important; }
 
-        /* Sembunyikan Label teks kecil default jika ada */
         .fi-btn-label { font-size: 1rem !important; }
 
         .fi-fo-wizard-header-step-button[aria-current="step"] .fi-fo-wizard-header-step-icon-ctn {
-        background-color: #fbbf24 !important; /* Lingkaran jadi Kuning */
+        background-color: #fbbf24 !important; 
         border-color: #fbbf24 !important;
-        box-shadow: 0 0 20px rgba(251, 191, 36, 0.6); /* Efek Glowing/Bercahaya */
-        transform: scale(1.1); /* Sedikit membesar */
+        box-shadow: 0 0 20px rgba(251, 191, 36, 0.6);
+        transform: scale(1.1); 
         transition: all 0.3s ease;
     }
 
-        /* Ubah warna ICON di dalam lingkaran active jadi gelap (biar terbaca) */
         .fi-fo-wizard-header-step-button[aria-current="step"] .fi-fo-wizard-header-step-icon {
-            color: #0f172a !important; /* Biru gelap hampir hitam */
+            color: #0f172a !important; 
         }
 
-        /* Ubah warna TEKS LABEL active jadi Kuning */
         .fi-fo-wizard-header-step-button[aria-current="step"] .fi-fo-wizard-header-step-label {
             color: #fbbf24 !important; 
             font-weight: bold !important;
             text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
         }
 
-        /* ----------------------------------------- */
-
-        /* 2. KONDISI COMPLETED (Form sudah diisi/dilewati) 
-           Warna: HIJAU (Success)
-        */
-        /* Filament biasanya memberi class 'bg-primary-600' pada index > 0. 
-           Kita override manual berdasarkan logic CSS sibling atau class bawaan jika ada.
-           Tapi cara paling aman membedakan 'Completed' vs 'Pending' tanpa JS tambahan 
-           adalah melihat apakah dia punya background primary tapi TIDAK active.
-        */
-
-        /* Target lingkaran yang border-nya primary tapi tidak active */
         .fi-fo-wizard-header-step-icon-ctn.bg-primary-600 {
-            background-color: #22c55e !important; /* Hijau */
+            background-color: #22c55e !important; 
             border-color: #22c55e !important;
         }
 
-        /* Target Icon Checkmark (SVG) pada step completed */
         .fi-fo-wizard-header-step-icon-ctn.bg-primary-600 svg {
             color: white !important;
         }
 
-        /* ----------------------------------------- */
-
-        /* 3. KONDISI PENDING (Belum sampai sana) 
-           Warna: ABU-ABU REDUP (Default)
-        */
         .fi-fo-wizard-header-step-button:not([aria-current="step"]) .fi-fo-wizard-header-step-icon-ctn {
-            /* Biarkan default transparan/border abu */
             opacity: 0.6;
         }
 
         .fi-fo-wizard-header-step-button:not([aria-current="step"]) .fi-fo-wizard-header-step-label {
-            color: #94a3b8 !important; /* Slate 400 */
+            color: #94a3b8 !important; 
         }
 
         input:focus,
         select:focus,
         textarea:focus,
-        .fi-input:focus,         /* Class khusus Filament input text */
-        .fi-select-input:focus,  /* Class khusus Filament select */
-        .fi-fo-textarea:focus    /* Class khusus Filament textarea */
+        .fi-input:focus,         
+        .fi-select-input:focus,  
+        .fi-fo-textarea:focus 
         {
-            /* 1. Ubah warna border jadi Biru */
-            border-color: #3b82f6 !important; /* Tailwind blue-500 */
+            border-color: #3b82f6 !important; 
 
-            /* 2. Hilangkan outline default browser (garis jelek bawaan chrome/firefox) */
             outline: 2px solid transparent !important;
             outline-offset: 2px !important;
 
-            /* 3. Ciptakan efek cahaya (Glow Ring) menggunakan box-shadow */
-            /* Format: offset-x | offset-y | blur-radius | spread-radius | color */
-            /* Kita pakai spread 3px dengan warna biru transparan (opacity 0.3) */
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3) !important;
 
-            /* Tambahkan transisi halus agar efeknya tidak kaget */
             transition: all 0.15s ease-in-out !important;
         }
 
@@ -182,14 +160,12 @@
     }
 
         .animate-blob {
-            animation: float 10s infinite; /* Gerakan lambat 10 detik */
+            animation: float 10s infinite;
         }
 
-        /* Utilitas delay agar bola tidak bergerak barengan */
         .animation-delay-2000 { animation-delay: 2s; }
         .animation-delay-4000 { animation-delay: 4s; }
 
-        /* Pattern titik-titik halus (Noise) agar tidak terlalu flat */
         .bg-grid-pattern {
             background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
         }
@@ -197,6 +173,7 @@
 </head>
 <body class="antialiased min-h-screen flex flex-col items-center justify-center p-4">
     <div class="fixed inset-0 -z-10 bg-[#0f172a] overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
         
         <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
 
@@ -244,6 +221,27 @@
 
     @filamentScripts
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+       // Fungsi Init AOS
+       function initAOS() {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50,
+                easing: 'ease-out-cubic',
+            });
+        }
+
+        // Jalankan saat pertama kali load
+        initAOS();
+
+        // 4. TRIK PENTING: Jalankan ulang AOS setiap kali pindah halaman (Livewire Navigate)
+        document.addEventListener('livewire:navigated', () => {
+            initAOS();
+        });
+    </script>
+
     <script>
         document.addEventListener('livewire:init', () => {
             Livewire.on('open-success-modal', (event) => {
@@ -251,11 +249,11 @@
                     title: 'Pendaftaran Berhasil!',
                     text: 'Terima kasih! Data Anda telah kami terima. Admin kami akan segera memverifikasi bukti pembayaran Anda.',
                     icon: 'success',
-                    iconColor: '#22c55e', // Warna Hijau Sukses
-                    background: '#1e293b', // Background Biru Gelap biar matching
-                    color: '#ffffff', // Teks Putih
+                    iconColor: '#22c55e', 
+                    background: '#1e293b', 
+                    color: '#ffffff', 
                     confirmButtonText: 'Siap, Lanjut Latihan! 🏃',
-                    confirmButtonColor: '#3b82f6', // Tombol Biru
+                    confirmButtonColor: '#3b82f6', 
                     allowOutsideClick: false,
                     backdrop: `
                         rgba(0,0,123,0.4)
@@ -265,7 +263,6 @@
                     `
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Refresh halaman setelah klik OK agar form benar-benar bersih
                         window.location.reload();
                     }
                 });
