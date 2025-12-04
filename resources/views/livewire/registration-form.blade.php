@@ -1,4 +1,5 @@
 <div class="max-w-3xl mx-auto p-6">
+    
     <form wire:submit="create">
         {{ $this->form }}
 

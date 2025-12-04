@@ -19,7 +19,7 @@ class PaymentSuccessMail extends Mailable
 
     public function build()
     {
-        return $this->subject('✅ Pembayaran Diterima - Tiket Fun Run Anda')
+        return $this->subject('✅ E-Ticket & Invoice: UNIROW RUN 2025')
                     ->view('emails.payment_success');
     }
 }

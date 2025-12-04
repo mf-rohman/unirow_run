@@ -68,6 +68,13 @@ class ParticipantResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('bib_number')
+                    ->label('No. BIB')
+                    ->searchable()
+                    ->copyable()
+                    ->fontFamily('mono')
+                    ->weight('bold')
+                    ->color('primary'),
                 Tables\Columns\TextColumn::make('name')->searchable()->label('Nama'),
                 Tables\Columns\TextColumn::make('nik')->label('NIK')->toggleable(isToggledHiddenByDefault: true), // Disembunyikan default biar tabel ga kepanjangan
                 Tables\Columns\TextColumn::make('jenis_kl')->label('L/P'),

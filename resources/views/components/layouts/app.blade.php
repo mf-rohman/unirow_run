@@ -223,7 +223,9 @@
                  alt="Logo Unirow Run" 
                  class="h-24 md:h-32 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] hover:scale-105      transition-transform duration-300">
         </div>
-        <p class="text-blue-200 text-sm">Dies Natalis 2025 Registration</p>
+        <p class="text-blue-200 text-sm">
+            {{request()->is('register') ? 'Unirow   Run 2025 Regsitrasi' : ''}}
+        </p>
     </div>
 
     <div class="w-full max-w-3xl">
