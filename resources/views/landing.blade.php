@@ -163,17 +163,17 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 relative z-10">
                 <div class="bg-black/30 p-5 md:p-6 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition duration-300 hover:-translate-y-2" data-aos="flip-left" data-aos-delay="100">
                     <div class="text-4xl md:text-5xl mb-3">🛵</div>
-                    <!-- <div class="text-yellow-400 font-bold text-xs tracking-wider mb-1 uppercase">Dari Yayasan</div> -->
+                    
                     <div class="text-white text-lg md:text-xl font-bold">Sepeda Motor Listrik</div>
                 </div>
                 <div class="bg-black/30 p-5 md:p-6 rounded-2xl border border-white/10 hover:border-blue-500/50 transition duration-300 hover:-translate-y-2" data-aos="flip-left" data-aos-delay="300">
                     <div class="text-4xl md:text-5xl mb-3">🚲</div>
-                    <!-- <div class="text-blue-400 font-bold text-xs tracking-wider mb-1 uppercase">Dari Unirow</div> -->
+                    
                     <div class="text-white text-lg md:text-xl font-bold">Sepeda Listrik</div>
                 </div>
                 <div class="bg-black/30 p-5 md:p-6 rounded-2xl border border-white/10 hover:border-green-500/50 transition duration-300 hover:-translate-y-2" data-aos="flip-left" data-aos-delay="500">
                     <div class="text-4xl md:text-5xl mb-3">🚵</div>
-                    <!-- <div class="text-green-400 font-bold text-xs tracking-wider mb-1 uppercase">Dari IKA Unirow</div>   -->
+                    
                     <div class="text-white text-lg md:text-xl font-bold">Sepeda Gunung</div>
                 </div>
             </div>

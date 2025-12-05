@@ -32,9 +32,9 @@ class RegistrationForm extends Component implements HasForms
         ->schema([
             Wizard::make([
                 
-                // --- STEP 1: INFORMASI EVENT (Hanya Teks & Gambar) ---
+                
                 Wizard\Step::make('Info')
-                    ->label('Welcome') // Ubah label jadi Welcome/Info
+                    ->label('Welcome') 
                     ->icon('heroicon-o-information-circle')
                     ->schema([
                         Forms\Components\Placeholder::make('event_info')
@@ -101,7 +101,7 @@ class RegistrationForm extends Component implements HasForms
                             ->required(),
                     ]),
 
-                // --- STEP 3: IDENTITAS (Tetap) ---
+
                 Wizard\Step::make('Identity')
                     ->label('Data Diri')
                     ->icon('heroicon-o-identification')
@@ -146,7 +146,6 @@ class RegistrationForm extends Component implements HasForms
                             ]),
                     ]),
 
-                // --- STEP 4: RACE PACK & KATEGORI (Kategori Pindah Sini) ---
                 Wizard\Step::make('Kit')
                     ->label('Race Pack')
                     ->icon('heroicon-o-shopping-bag')
@@ -172,8 +171,6 @@ class RegistrationForm extends Component implements HasForms
 
                         // Forms\Components\Placeholder::make('sep')->content(new HtmlString('<hr class="my-6 border-gray-200">')),
 
-                        // 2. PANDUAN UKURAN (SIZE CHART HTML)
-                        // Kita buat tabel visual agar mirip gambar referensi
                         Forms\Components\Placeholder::make('size_chart_info')
                             ->label('')
                             ->content(new HtmlString('
@@ -226,7 +223,7 @@ class RegistrationForm extends Component implements HasForms
                             ->view('forms.components.radio-card') 
                             ->required(),
 
-                        // 3. UPLOAD BUKTI BAYAR
+
                         Forms\Components\Section::make('Pembayaran')
                             ->schema([
                                 Forms\Components\FileUpload::make('payment_proof')

@@ -13,13 +13,11 @@
         .qr-code { text-align: center; margin: 30px 0; }
         .qr-code img { border: 1px solid #ddd; padding: 5px; }
         
-        /* Table Styles */
         .info-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px; }
         .info-table th { text-align: left; width: 40%; color: #666; padding: 5px 0; font-weight: normal; }
         .info-table td { text-align: left; width: 60%; font-weight: bold; color: #000; padding: 5px 0; }
         .section-title { font-weight: bold; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-top: 20px; margin-bottom: 10px; color: #1e3a8a; }
 
-        /* Items Table */
         .items-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
         .items-table th { background: #f8f9fa; padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
         .items-table td { padding: 10px; border-bottom: 1px solid #eee; }

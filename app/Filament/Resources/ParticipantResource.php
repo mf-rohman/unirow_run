@@ -48,14 +48,13 @@ class ParticipantResource extends Resource
                     ->onColor('success')
                     ->offColor('danger')
                     ->afterStateUpdated(function ($record, $state) {
-                        // Jika diverifikasi (True) DAN belum punya nomor BIB
+          
                         if ($state && empty($record->bib_number)) {
                             
                             // 1. Generate BIB (Contoh: RUN-0001)
                             $bib = 'RUN-' . str_pad($record->id, 4, '0', STR_PAD_LEFT);
                             $record->update(['bib_number' => $bib]);
                 
-                            // 2. Kirim Email
                             try {
                                 Mail::to($record->email)->send(new PaymentSuccessMail($record));
                             } catch (\Exception $e) {}
@@ -116,9 +115,8 @@ class ParticipantResource extends Resource
                     ->color('success')
                     ->action(function (\Illuminate\Database\Eloquent\Collection $records) {
     
-                        // Loop untuk generate BIB & Kirim Email satu per satu
                         foreach ($records as $record) {
-                            // Hanya proses yang belum diverifikasi atau belum punya BIB
+                         
                             if (!$record->is_verified || empty($record->bib_number)) {
 
                                 // Generate BIB

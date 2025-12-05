@@ -23,7 +23,7 @@
         }
 
         #nprogress .bar {
-            background: #3b82f6 !important; /* Warna Biru */
+            background: #3b82f6 !important; 
             height: 4px !important;
             box-shadow: 0 0 10px #3b82f6, 0 0 5px #3b82f6;
         }
@@ -31,21 +31,21 @@
             box-shadow: 0 0 10px #3b82f6, 0 0 5px #3b82f6;
         }
 
-        /* 3. SETTING DURASI TRANSISI (Lebih Lambat & Elegan) */
+        
         ::view-transition-old(root),
         ::view-transition-new(root) {
-            animation-duration: 0.5s; /* Setengah detik */
+            animation-duration: 0.5s; 
         }
 
-        /* Pastikan canvas partikel ada di belakang */
+       
         #tsparticles {
             position: fixed;
             width: 100%;
             height: 100%;
-            z-index: -5; /* Paling belakang */
+            z-index: -5;
             top: 0;
             left: 0;
-            pointer-events: none; /* Agar tidak menghalangi klik pada konten */
+            pointer-events: none; 
         }
         
         input, select, textarea, .fi-input, .fi-select-input {
@@ -184,7 +184,7 @@
 </head>
 <body class="antialiased min-h-screen flex flex-col items-center justify-center p-4">
     <div class="fixed inset-0 -z-10 bg-[#0f172a] overflow-hidden">
-        <!-- <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div> -->
+        
 
         <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
          <div class="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-[150px] opacity-20 animate-pulse"></div>
@@ -244,49 +244,49 @@
 
         (async () => {
             await tsParticles.load("tsparticles", {
-                fullScreen: { enable: false }, // Kita atur posisi manual via CSS
+                fullScreen: { enable: false }, 
                 background: {
-                    color: { value: "transparent" }, // Background transparan agar warna dasar terlihat
+                    color: { value: "transparent" }, 
                 },
-                fpsLimit: 120, // Performa tinggi
+                fpsLimit: 120, 
                 interactivity: {
                     events: {
-                        // Saat mouse bergerak di atasnya (Hover)
+                        
                         onHover: {
                             enable: true,
-                            mode: "grab" // Mode "Grab": Menarik garis ke kursor
+                            mode: "grab" 
                         },
                         resize: true,
                     },
                     modes: {
                         grab: {
-                            distance: 200, // Jarak kursor mulai menarik partikel
+                            distance: 200, 
                             links: {
-                                opacity: 0.8, // Garis koneksi ke mouse lebih terang
-                                color: "#60a5fa" // Warna garis biru terang
+                                opacity: 0.8, 
+                                color: "#60a5fa" 
                             }
                         },
                     },
                 },
                 particles: {
                     color: {
-                        value: "#3b82f6" // Warna titik partikel (Biru)
+                        value: "#3b82f6"
                     },
                     links: {
-                        color: "#3b82f6", // Warna garis antar partikel
-                        distance: 150, // Jarak maksimal untuk terhubung
+                        color: "#3b82f6", 
+                        distance: 150, 
                         enable: true,
-                        opacity: 0.3, // Kecerahan garis (agak samar)
+                        opacity: 0.3, 
                         width: 1,
                     },
                     move: {
                         direction: "none",
                         enable: true,
                         outModes: {
-                            default: "bounce" // Memantul jika kena pinggir layar
+                            default: "bounce" 
                         },
                         random: false,
-                        speed: 1, // Kecepatan gerak partikel (santai)
+                        speed: 1, 
                         straight: false,
                     },
                     number: {
@@ -294,23 +294,23 @@
                             enable: true,
                             area: 800,
                         },
-                        value: 80, // Jumlah total partikel (jangan terlalu banyak biar ga berat)
+                        value: 80, 
                     },
                     opacity: {
-                        value: 0.5, // Kecerahan titik partikel
+                        value: 0.5, 
                     },
                     shape: {
-                        type: "circle", // Bentuk titik bulat
+                        type: "circle", 
                     },
                     size: {
-                        value: { min: 1, max: 3 }, // Ukuran partikel bervariasi
+                        value: { min: 1, max: 3 }, 
                     },
                 },
                 detectRetina: true,
             });
         })();
 
-       // Fungsi Init AOS
+       
        function initAOS() {
             AOS.init({
                 duration: 800,
@@ -320,10 +320,10 @@
             });
         }
 
-        // Jalankan saat pertama kali load
+        
         initAOS();
 
-        // 4. TRIK PENTING: Jalankan ulang AOS setiap kali pindah halaman (Livewire Navigate)
+       
         document.addEventListener('livewire:navigated', () => {
             initAOS();
         });
