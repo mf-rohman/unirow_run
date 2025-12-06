@@ -91,7 +91,7 @@ class ParticipantResource extends Resource
                 Tables\Columns\TextColumn::make('name')->searchable()->label('Nama'),
                 Tables\Columns\TextColumn::make('nik')->label('NIK')->toggleable(isToggledHiddenByDefault: true), // Disembunyikan default biar tabel ga kepanjangan
                 Tables\Columns\TextColumn::make('jenis_kl')->label('L/P'),
-                Tables\Columns\TextColumn::make('usia')->suffix(' Thn'),
+                Tables\Columns\TextColumn::make('usia')->suffix(' Thn')->toggleable(isToggledHiddenByDefault:true),
                 Tables\Columns\TextColumn::make('phone')->label('WA'),
                 Tables\Columns\TextColumn::make('jersey_size')->label('Size'),
                 Tables\Columns\IconColumn::make('is_verified')
