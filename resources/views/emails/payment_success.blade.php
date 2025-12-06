@@ -134,7 +134,7 @@
                     <strong>🏃‍♂️ PENTING:</strong> Silakan bergabung ke Grup Resmi Peserta untuk info pengambilan Race Pack & Rundown Acara.
                 </p>
                 
-                <a href="https://chat.whatsapp.com/LINK_INVITE_GRUP_ANDA" 
+                <a href="https://bit.ly/waGroupUnirowRun-2025" 
                    style="background-color: #25D366; color: #ffffff; padding: 12px 25px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 14px; display: inline-block; border: 1px solid #1da851;">
                    <span style="font-size: 16px; vertical-align: middle;">💬</span> GABUNG GRUP WHATSAPP
                 </a>

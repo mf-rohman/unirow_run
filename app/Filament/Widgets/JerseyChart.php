@@ -21,7 +21,7 @@ class JerseyChart extends ChartWidget
             ->toArray();
 
         // Urutkan ukuran biar rapi (S, M, L, dst)
-        $sizes = ['S', 'M', 'L', 'XL', 'XXL', '3XL'];
+        $sizes = ['XS', 'S', 'M', 'L', 'XL', '2XL'];
         $chartData = [];
         
         foreach ($sizes as $size) {

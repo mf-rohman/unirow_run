@@ -50,9 +50,22 @@ class ParticipantResource extends Resource
                     ->afterStateUpdated(function ($record, $state) {
           
                         if ($state && empty($record->bib_number)) {
+
+                            $lastParticipant = \App\Models\Participant::whereNotNull('bib_number')
+                                ->orderByRaw('LENGTH(bib_number) DESC')
+                                ->orderBy('bib_number', 'desc')
+                                ->first();
+                            
+                            $nextNumber = 1;
+
+                            if($lastParticipant) {
+                                $cleanNumber = preg_replace('/[^0-9]/', '',  $lastParticipant->bib_number);
+
+                                $nextNumber = (int) $cleanNumber + 1;
+                            }
                             
                             // 1. Generate BIB (Contoh: RUN-0001)
-                            $bib = 'RUN-' . str_pad($record->id, 4, '0', STR_PAD_LEFT);
+                            $bib = 'RUN-' . str_pad($record->$nextNumber, 4, '0', STR_PAD_LEFT);
                             $record->update(['bib_number' => $bib]);
                 
                             try {
@@ -70,6 +83,7 @@ class ParticipantResource extends Resource
                 Tables\Columns\TextColumn::make('bib_number')
                     ->label('No. BIB')
                     ->searchable()
+                    ->sortable()
                     ->copyable()
                     ->fontFamily('mono')
                     ->weight('bold')
@@ -89,7 +103,8 @@ class ParticipantResource extends Resource
                     ->falseColor('danger') 
                     ->alignCenter(),
 
-                Tables\Columns\TextColumn::make('created_at')->dateTime()->label('Tgl Daftar'),
+                Tables\Columns\TextColumn::make('created_at')->dateTime()->label('Tgl Daftar')
+                    ->sortable(),
             ])
             ->filters([
                 Tables\Filters\TernaryFilter::make('is_verified')->label('Status Verifikasi'),
@@ -114,20 +129,34 @@ class ParticipantResource extends Resource
                     ->icon('heroicon-o-check-badge')
                     ->color('success')
                     ->action(function (\Illuminate\Database\Eloquent\Collection $records) {
+
+                        $lastParticipant = \App\Models\Participant::whereNotNull('bib_number')
+                            ->orderByRaw('LENGTH(bib_number) DESC')
+                            ->orderBy('bib_number', 'desc')
+                            ->first();
+
+                        $currentMaxNumber = 0;
+                        if ($lastParticipant) {
+                            $cleanNumber = preg_replace('/[^0-9]/', '', $lastParticipant->bib_number);
+                            $currentMaxNumber = (int) $cleanNumber;
+                        }
     
                         foreach ($records as $record) {
-                         
+                            // Hanya proses yang belum diverifikasi atau belum punya BIB
                             if (!$record->is_verified || empty($record->bib_number)) {
-
-                                // Generate BIB
-                                $bib = 'RUN-' . str_pad($record->id, 4, '0', STR_PAD_LEFT);
-
+                                
+                                // Naikkan counter (+1)
+                                $currentMaxNumber++; 
+                                
+                                // Format BIB
+                                $bib = 'RUN-' . str_pad($currentMaxNumber, 4, '0', STR_PAD_LEFT);
+                                
                                 $record->update([
                                     'is_verified' => true,
                                     'bib_number' => $bib
                                 ]);
-                            
-                                // Kirim Email (Antrikan biar tidak lemot kalau banyak)
+                
+                                // Kirim Email
                                 try {
                                     Mail::to($record->email)->send(new PaymentSuccessMail($record));
                                 } catch (\Exception $e) {}

@@ -25,7 +25,7 @@ class RegistrationConfirmMail extends Mailable
 
     public function build()
     {
-        return $this->subject('🔔 Konfirmasi Pendaftaran Fun Run Unirow 2025')
+        return $this->subject('🔔 Konfirmasi Pendaftaran Unirow Run 2025')
                     ->view('emails.registration_confirm');
     }
 }

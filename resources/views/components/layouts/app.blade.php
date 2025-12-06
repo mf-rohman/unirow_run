@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="{{asset('images/logo.png')}}">
+    <link rel="icon" type="image/x-icon" href="{{asset('images/logo-run.png')}}">
     <title>Fun Run Dies Natalis Unirow 2025</title>
     
     
@@ -219,7 +219,7 @@
 
     <div class="mb-6 text-center">
         <div class="mb-2 text-center flex justify-center">
-            <img src="{{ asset('images/logo.png') }}" 
+            <img src="{{ asset('images/logo-run.png') }}" 
                  alt="Logo Unirow Run" 
                  class="h-24 md:h-32 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] hover:scale-105      transition-transform duration-300">
         </div>
