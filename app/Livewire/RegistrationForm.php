@@ -222,6 +222,44 @@ class RegistrationForm extends Component implements HasForms
                             ])
                             ->view('forms.components.radio-card') 
                             ->required(),
+                        
+                        Forms\Components\Placeholder::make('bank_info')
+                            ->label('')
+                            ->content(new HtmlString('
+                                <div class="mt-6 mb-6">
+                                    <div class="bg-gradient-to-r from-blue-700 to-blue-900 rounded-2xl p-6 text-white shadow-lg relative overflow-hidden group">
+                                        
+                                        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white opacity-10 rounded-full blur-xl"></div>
+                                        <div class="absolute bottom-0 left-0 -mb-4 -ml-4 w-20 h-20 bg-white opacity-10 rounded-full blur-lg"></div>
+
+                                        <div class="relative z-10 text-center">
+                                            <p class="text-blue-200 text-sm font-medium mb-4">Silakan Transfer Pembayaran ke:</p>
+                                            
+                                            <div class="flex justify-center items-center gap-2 mb-2">
+                                                <div class="font-bold text-xl tracking-widest">BANK BRI</div>
+                                                </div>
+
+                                            <div class="text-3xl sm:text-4xl font-extrabold tracking-wider font-mono my-3 text-yellow-400 select-all">
+                                                010901091581506
+                                            </div>
+
+                                            <div class="text-lg font-semibold">
+                                                a.n. WITRA ADILA
+                                            </div>
+
+                                            <div class="mt-6">
+                                                <span class="bg-white/20 px-4 py-2 rounded-lg text-sm font-bold border border-white/30">
+                                                    Total: Rp 150.000
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <p class="text-center text-gray-500 text-xs mt-2">
+                                        💡 Tips: Salin nomor rekening di atas dan pastikan nominal sesuai.
+                                    </p>
+                                </div>
+                        ')),
 
 
                         Forms\Components\Section::make('Pembayaran')
