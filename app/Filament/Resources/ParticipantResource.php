@@ -43,33 +43,48 @@ class ParticipantResource extends Resource
                     ->directory('payments')
                     ->columnSpanFull(),
 
-                Forms\Components\Toggle::make('is_verified')
+                    Forms\Components\Toggle::make('is_verified')
                     ->label('Lunas?')
                     ->onColor('success')
                     ->offColor('danger')
-                    ->afterStateUpdated(function ($record, $state) {
-          
-                        if ($state && empty($record->bib_number)) {
-
+                    
+                    // 1. WAJIB ADA: Agar kode jalan langsung saat diklik (tanpa tekan save dulu)
+                    ->live() 
+                    
+                    ->afterStateUpdated(function ($state, ?\Illuminate\Database\Eloquent\Model $record, \Filament\Forms\Set $set) {
+                        
+                        if ($state && $record && empty($record->bib_number)) {
+                
                             $lastParticipant = \App\Models\Participant::whereNotNull('bib_number')
                                 ->orderByRaw('LENGTH(bib_number) DESC')
                                 ->orderBy('bib_number', 'desc')
                                 ->first();
                             
                             $nextNumber = 1;
-
-                            if($lastParticipant) {
+                
+                            if ($lastParticipant) {
                                 $cleanNumber = preg_replace('/[^0-9]/', '',  $lastParticipant->bib_number);
-
                                 $nextNumber = (int) $cleanNumber + 1;
                             }
                             
-                            // 1. Generate BIB (Contoh: RUN-0001)
-                            $bib = 'RUN-' . str_pad($record->$nextNumber, 4, '0', STR_PAD_LEFT);
+                            $bib = 'RUN-' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
+                            
+                            // Update Database Langsung
                             $record->update(['bib_number' => $bib]);
                 
+                            // Opsional: Update tampilan field BIB di form agar admin melihatnya berubah
+                            // Asumsi nama field form bib-nya adalah 'bib_number'
+                            $set('bib_number', $bib);
+                
+                            // Kirim Email
                             try {
-                                Mail::to($record->email)->send(new PaymentSuccessMail($record));
+                                \Illuminate\Support\Facades\Mail::to($record->email)->send(new \App\Mail\PaymentSuccessMail($record));
+                                
+                                // Beri notifikasi kecil bahwa email terkirim
+                                \Filament\Notifications\Notification::make()
+                                    ->title('Verifikasi Berhasil & Email Terkirim')
+                                    ->success()
+                                    ->send();
                             } catch (\Exception $e) {}
                         }
                     }),
