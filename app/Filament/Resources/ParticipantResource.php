@@ -36,7 +36,7 @@ class ParticipantResource extends Resource
                 Forms\Components\TextInput::make('phone')->required(),
                 Forms\Components\Select::make('jersey_size')
                     ->options([
-                        'S' => 'S', 'M' => 'M', 'L' => 'L', 'XL' => 'XL', 'XXL' => 'XXL'
+                        'S' => 'S', 'M' => 'M', 'L' => 'L', 'XL' => 'XL', '2XL' => '2XL'
                     ])->required(),
                 Forms\Components\FileUpload::make('payment_proof')
                     ->image()
