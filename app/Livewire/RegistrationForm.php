@@ -195,6 +195,9 @@ class RegistrationForm extends Component implements HasForms
                                                 <tr class="border-b border-orange-100"><td class="p-1 font-bold">L</td><td>54</td><td>72</td></tr>
                                                 <tr class="border-b border-orange-100"><td class="p-1 font-bold">XL</td><td>57</td><td>74</td></tr>
                                                 <tr><td class="p-1 font-bold">2XL</td><td>60</td><td>76</td></tr>
+                                                <tr><td class="p-1 font-bold">3XL</td><td>63</td><td>78</td></tr>
+                                                <tr><td class="p-1 font-bold">4XL</td><td>66</td><td>80</td></tr>
+                                                <tr><td class="p-1 font-bold">5XL</td><td>69</td><td>82</td></tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -211,6 +214,9 @@ class RegistrationForm extends Component implements HasForms
                                 'L' => 'Size L',
                                 'XL' => 'Size XL',
                                 '2XL' => 'Size 2XL',
+                                '3XL' => 'Size 3XL',
+                                '4XL' => 'Size 4XL',
+                                '5XL' => 'Size 5XL',
                             ])
                             ->descriptions([
                                 'XS' => '48 x 66 cm',
@@ -219,6 +225,9 @@ class RegistrationForm extends Component implements HasForms
                                 'L' => '54 x 72 cm',
                                 'XL' => '57 x 74 cm',
                                 '2XL' => '60 x 76 cm',
+                                '3XL' => '63 x 78 cm',
+                                '4XL' => '66 x 80 cm',
+                                '5XL' => '69 x 82 cm',
                             ])
                             ->view('forms.components.radio-card') 
                             ->required(),
