@@ -245,15 +245,15 @@ class RegistrationForm extends Component implements HasForms
                                             <p class="text-blue-200 text-sm font-medium mb-4">Silakan Transfer Pembayaran ke:</p>
                                             
                                             <div class="flex justify-center items-center gap-2 mb-2">
-                                                <div class="font-bold text-xl tracking-widest">BANK BRI</div>
+                                                <div class="font-bold text-xl tracking-widest">BANK JATIM</div>
                                                 </div>
 
                                             <div class="text-3xl sm:text-4xl font-extrabold tracking-wider font-mono my-3 text-yellow-400 select-all">
-                                                010901091581506
+                                                0172260063
                                             </div>
 
                                             <div class="text-lg font-semibold">
-                                                a.n. WITRA ADILA
+                                                a.n. WITRA ADILA SHOFIA
                                             </div>
 
                                             <div class="mt-6">
