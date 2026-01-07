@@ -2,11 +2,12 @@
     @php
         // Pengaturan Waktu (WIB)
         $now = now('Asia/Jakarta');
-        $deadlineTahap1 = \Carbon\Carbon::create(2025, 12, 27, 12, 0, 0, 'Asia/Jakarta');
-        $bukaTahap2 = \Carbon\Carbon::create(2026, 1, 1, 12, 0, 0, 'Asia/Jakarta');
+        $deadlineTahap1 = \Carbon\Carbon::create(2026, 1, 4, 11, 0, 0, 'Asia/Jakarta');
+        $bukaTahap2 = \Carbon\Carbon::create(2026, 1, 4, 12, 0, 0, 'Asia/Jakarta');
 
         // Penentuan Status
-        $sedangTutup = ($now->greaterThanOrEqualTo($deadlineTahap1) && $now->lessThan($bukaTahap2));
+        //$sedangTutup = ($now->greaterThanOrEqualTo($deadlineTahap1) && $now->lessThan($bukaTahap2));
+		$sedangTutup = $now->greaterThanOrEqualTo($deadlineTahap1);
         $tampilkanCountdownTahap1 = $now->lessThan($deadlineTahap1);
     @endphp
 
@@ -51,7 +52,7 @@
                         <div class="px-8 py-4 text-lg font-bold text-gray-400 bg-white/10 border border-white/20 rounded-full cursor-not-allowed">
                             🚫 Pendaftaran Sudah Ditutup
                         </div>
-                        <p class="text-red-400 text-sm mt-4 animate-pulse font-medium italic">Nantikan kejutan berikutnya dari kami!</p>
+                        <p class="text-red-400 text-sm mt-4 animate-pulse font-medium italic">Nantikan informasi berikutnya dari kami!</p>
                     </div>
                 @else
                     <a href="{{ route('register') }}" wire:navigate class="relative inline-flex group items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-blue-600 rounded-full hover:bg-blue-500 shadow-xl shadow-blue-500/30 w-full sm:w-auto">
