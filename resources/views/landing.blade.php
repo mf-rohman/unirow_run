@@ -82,7 +82,7 @@
                         Jl. Manunggal Lor → Gedung Dinsos → Jl. WR Supratman
                     </div>
                     <div class="relative flex items-center gap-6 pl-12 text-gray-300 text-sm md:text-base">
-                        SMAN 1 Tuban → Jl. Manunggal Kidul
+                        SMAN 1 Tuban → Pertigaan JT ke kiri
                     </div>
                     <div class="relative flex items-center gap-6">
                         <div class="w-12 flex justify-center z-10"><div class="w-4 h-4 rounded-full bg-red-600 border-4 border-gray-900 animate-bounce"></div></div>
@@ -100,7 +100,7 @@
                     </div>
                     <div class="bg-black/20 p-4 rounded-2xl border border-white/5 flex items-center gap-4">
                         <div class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center font-bold text-white text-nowrap">HM</div>
-                        <div><h4 class="text-white font-bold">HIMAIKOM</h4><p class="text-gray-400 text-xs">Himpunan Mahasiswa Ilmu Komunikasi</p></div>
+                        <div><h4 class="text-white font-bold">COMMUNICATION RUN</h4><p class="text-gray-400 text-xs"></p></div>
                     </div>
                 </div>
             </div>
