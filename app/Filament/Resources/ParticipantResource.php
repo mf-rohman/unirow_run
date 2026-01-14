@@ -24,6 +24,7 @@ use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportAction;
 use pxlrbt\FilamentExcel\Exports\ExcelExport;
 use pxlrbt\FilamentExcel\Columns\Column;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 class ParticipantResource extends Resource
 {
@@ -137,7 +138,11 @@ class ParticipantResource extends Resource
                             ->withFilename('Data_Peserta_UnirowRun_' . date('Y-m-d'))
                             ->withColumns([
                                 // Tambahan kolom manual jika di tabel tidak ada (misal NIK/Alamat)
-                                Column::make('nik')->heading('NIK'),
+                                Column::make('nik')
+                                ->heading('NIK')
+                                ->format(\PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_TEXT)
+                                // Paksa tambah spasi di depan agar Excel tidak membacanya sebagai angka
+                                ->formatStateUsing(fn ($state) => ' ' . $state),
                                 Column::make('alamat')->heading('Alamat Lengkap'),
                                 Column::make('jersey_size')->heading('Ukuran Jersey'),
                                 Column::make('phone')->heading('WhatsApp'),
@@ -162,7 +167,7 @@ class ParticipantResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                    
+
                     ExportBulkAction::make()
                     ->label('Export Terpilih')
                     ->icon('heroicon-o-document-arrow-down')
