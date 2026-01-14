@@ -99,7 +99,7 @@
                         <div><h4 class="text-white font-bold">Tuban Runners</h4><p class="text-gray-400 text-xs text-nowrap">Official Running Community</p></div>
                     </div>
                     <div class="bg-black/20 p-4 rounded-2xl border border-white/5 flex items-center gap-4">
-                        <div class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center font-bold text-white text-nowrap">HM</div>
+                        <div class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center font-bold text-white text-nowrap">CR</div>
                         <div><h4 class="text-white font-bold">COMMUNICATION RUN</h4><p class="text-gray-400 text-xs"></p></div>
                     </div>
                 </div>

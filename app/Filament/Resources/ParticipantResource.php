@@ -20,6 +20,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportAction;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
+use pxlrbt\FilamentExcel\Columns\Column;
 
 class ParticipantResource extends Resource
 {
@@ -121,6 +125,27 @@ class ParticipantResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')->dateTime()->label('Tgl Daftar')
                     ->sortable(),
             ])
+
+            ->headerActions([
+                ExportAction::make()
+                    ->label('Export Excel')
+                    ->icon('heroicon-o-arrow-down-tray')
+                    ->color('success')
+                    ->exports([
+                        ExcelExport::make()
+                            ->fromTable() // Ambil kolom sesuai tampilan tabel
+                            ->withFilename('Data_Peserta_UnirowRun_' . date('Y-m-d'))
+                            ->withColumns([
+                                // Tambahan kolom manual jika di tabel tidak ada (misal NIK/Alamat)
+                                Column::make('nik')->heading('NIK'),
+                                Column::make('alamat')->heading('Alamat Lengkap'),
+                                Column::make('jersey_size')->heading('Ukuran Jersey'),
+                                Column::make('phone')->heading('WhatsApp'),
+                                Column::make('payment_proof')->heading('Bukti Bayar'),
+                            ]),
+                    ]),
+            ])
+
             ->filters([
                 Tables\Filters\TernaryFilter::make('is_verified')->label('Status Verifikasi'),
             ])
@@ -137,6 +162,15 @@ class ParticipantResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    
+                    ExportBulkAction::make()
+                    ->label('Export Terpilih')
+                    ->icon('heroicon-o-document-arrow-down')
+                    ->exports([
+                        ExcelExport::make()
+                            ->fromTable()
+                            ->withFilename('Data_Peserta_Selected_' . date('Y-m-d'))
+                    ]),
                 ]),
 
                 Tables\Actions\BulkAction::make('verify_selected')
